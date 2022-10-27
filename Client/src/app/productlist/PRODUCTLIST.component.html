@@ -1,0 +1,147 @@
+﻿<div id="item1" fxLayout="column" fxFlex="100" style="min-height:30px">
+  <div id="item2" fxLayout="column" style="min-height:30px">
+    <customernav id="item10"></customernav>
+    <hr id="item14" />
+    <div id="item3" fxLayout="row" fxLayoutGap="10px" style="min-height:30px">
+      <button
+        id="item6"
+        mat-button="true"
+        mat-raised-button="true"
+        color="primary"
+        type="button"
+      >
+        Electronics
+      </button>
+      <button
+        id="item7"
+        mat-button="true"
+        mat-raised-button="true"
+        color="primary"
+        type="button"
+      >
+        Mobiles
+      </button>
+      <button
+        id="item8"
+        mat-button="true"
+        mat-raised-button="true"
+        color="primary"
+        type="button"
+      >
+        Fashion
+      </button>
+      <button
+        id="item9"
+        mat-button="true"
+        mat-raised-button="true"
+        color="primary"
+        type="button"
+      >
+        Beauty
+      </button>
+    </div>
+    <div id="item11" fxLayout="column" style="min-height:30px">
+      <div
+        id="item47"
+        fxLayout="row"
+        fxLayoutGap="10px"
+        style="min-height:30px"
+        *ngFor="
+          let ProductFullDetailsResponseListItem of ProductFullDetailsResponseList;
+          let i = index
+        "
+        (click)="
+          ProductFullDetailsResponseListSelectedItem = ProductFullDetailsResponseListItem
+        "
+      >
+        <div
+          id="item48"
+          style="min-height:30px"
+          fxFlex.gt-sm="25"
+          fxFlex.gt-xs="50"
+          fxFlex="100"
+        >
+          <mat-card id="item49" class=" pricing-plan">
+            <mat-card-title id="item50">
+              {{ ProductFullDetailsResponseListItem.productName }}
+            </mat-card-title>
+            <mat-card-subtitle id="item51" class=" mat-text-primary">
+              {{ ProductFullDetailsResponseListItem.totalsale }}
+            </mat-card-subtitle>
+            <mat-card-content id="item52">
+              <h1 id="item53" class=" plan-price">
+                FREE
+                <br id="item62" />
+                <strong id="item54" class=" plan-price">
+                  <span id="item56">
+                    {{ ProductFullDetailsResponseListItem.size }}
+                    <br id="item63" />
+                  </span>
+                  <span id="item57" class=" plan-price-period">
+                    {{ ProductFullDetailsResponseListItem.description }}
+                    <br id="item64" />
+                  </span>
+                </strong>
+                <span id="item55" class=" plan-price-symbol">
+                  {{ ProductFullDetailsResponseListItem.price }}
+                </span>
+              </h1>
+              <mat-list id="item58" dense>
+                <mat-list-item id="item59">
+                  {{ ProductFullDetailsResponseListItem.brand }}
+                </mat-list-item>
+              </mat-list>
+              <img
+                id="item71"
+                [src]="ProductFullDetailsResponseListItem.image"
+                style="width:400px"
+              />
+            </mat-card-content>
+            <mat-card-actions id="item60" class=" pb-1">
+              <button
+                id="item61"
+                color="accent"
+                mat-raised-button
+                (click)="buyfun()"
+              >
+                Buy
+              </button>
+              <button
+                id="item65"
+                mat-button="true"
+                mat-raised-button="true"
+                mat-icon-button="true"
+                color="primary"
+                type="button"
+              >
+                <mat-icon id="item66">add_shopping_cart</mat-icon>
+              </button>
+              <button
+                id="item67"
+                mat-button="true"
+                mat-raised-button="true"
+                mat-icon-button="true"
+                color="primary"
+                type="button"
+              >
+                <mat-icon id="item68" (click)="addTocardFun()">
+                  library_add
+                </mat-icon>
+              </button>
+              <button
+                id="item69"
+                mat-button="true"
+                mat-raised-button="true"
+                mat-icon-button="true"
+                color="primary"
+                type="button"
+              >
+                <mat-icon id="item70">home</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

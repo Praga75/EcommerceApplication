@@ -1,0 +1,7 @@
+export class Config {
+    public static ServiceBaseUrl = 'http://localhost:8080/';
+    public static projectName = 'RichCard';
+    public static projectLogoUrl = '';
+    public static footerText = '';
+    public static navigationType = 'horizontal-navigation';
+}

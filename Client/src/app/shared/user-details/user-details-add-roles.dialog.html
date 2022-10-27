@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Add/Edit User Roles</h1>
+
+<div mat-dialog-content fxLayout="column">
+    <mat-form-field>
+        <mat-chip-list #chipList aria-label="Roles selection">
+          <mat-chip
+            *ngFor="let role of roles"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(role)">
+            {{role}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="Roles..."
+            #roleInput
+            maxlength="32"
+            [formControl]="roleCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+          <mat-option *ngFor="let role of filteredRoles | async" [value]="role.RoleName">
+            {{role.RoleName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button color="warn" type="button" (click)="cancelPopup()">Cancel</button>
+    <button mat-button color="primary" [disabled]="roles && roles.length == 0" (click)="onSubmit()">Save</button>
+</div>

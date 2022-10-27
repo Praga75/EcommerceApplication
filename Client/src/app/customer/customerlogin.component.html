@@ -1,0 +1,36 @@
+﻿<div id="item1" fxLayout="column" fxFlex="100" style="min-height:30px">
+  <div id="item2" fxLayout="column" style="min-height:30px">
+    <div id="item8" fxLayout="column">
+      <form id="item9" #item9="ngForm">
+        <mat-form-field id="item3">
+          <input
+            id="item4"
+            name="Email"
+            matInput
+            placeholder=" Email"
+            [(ngModel)]="RichCardCustomerDetails.Email"
+          />
+        </mat-form-field>
+        <mat-form-field id="item5">
+          <input
+            id="item6"
+            name="password"
+            matInput
+            placeholder=" Password"
+            [(ngModel)]="RichCardCustomerDetails.password"
+          />
+        </mat-form-field>
+        <button
+          id="item7"
+          mat-button="true"
+          mat-raised-button="true"
+          color="primary"
+          type="button"
+          (click)="loginfun()"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<mat-toolbar color="accent">
+  <mat-toolbar-row></mat-toolbar-row>
+  <mat-toolbar-row></mat-toolbar-row>
+</mat-toolbar>
+
+<div fxLayout="row wrap" fxLayoutAlign="center start">
+  <div fxFlex.gt-sm="40" fxFlex="100">
+    <mat-card class="mat-card-top" *ngIf="profileView">
+      <mat-card-content *ngIf="userDetails">
+        <div fxLayout="row">
+          <div>
+            <div>
+              <div class="text-xs-center">
+                <ng-container *ngIf="userDetails.DocId">
+                  <img [src]="userImage" style="max-width: 130px"
+                    alt="Profile Pic">
+                </ng-container>
+              </div>
+              <h4 class="ma-0"><b>{{userDetails.displayName}}</b></h4>
+              <small>{{userDetails.email}}</small>
+            </div>
+
+          </div>
+          <div fxFlex="3"></div>
+          <div fxFlex>
+            <h1 class="ma-0">{{userDetails.firstName}} <b>{{userDetails.lastName}}</b></h1>
+            <!-- <a class="block mt-xs mb-xs">Username : {{currentUser.userName}}</a> -->
+            <figure *ngIf="userDetails.addressline1">
+              <div class="text-md mt10">Address Details</div>
+              <p>
+                {{userDetails.addressline1}}, {{userDetails.addressline2}} <br />
+                {{userDetails.state}},{{userDetails.city}},<br />
+                {{userDetails.country}} - {{userDetails.pincode}}.<br />
+              </p>
+            </figure>
+          </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions class="profileEditActionBar" fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+        <button mat-fab matTooltip="Edit Profile" color="primary" (click)="onEdit()">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-fab matTooltip="Change Password" (click)="onPasswordReset()">
+          <mat-icon>lock</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

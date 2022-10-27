@@ -1,0 +1,9 @@
+<div fxFlex>
+    <mat-list>
+        <mat-list-item *ngFor="let role of roles" [class.selected]="role === selectedRole" (click)="emitSelectedRole(role)">
+            <div mat-list-icon class="ui-avatar color-primary">{{role.RoleName | slice:0:1 | uppercase}}</div>
+            <h4 mat-line>{{role.RoleName}}</h4>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+</div>

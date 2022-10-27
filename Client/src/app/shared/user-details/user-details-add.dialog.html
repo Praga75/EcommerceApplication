@@ -1,0 +1,186 @@
+<h1 mat-dialog-title>Add User</h1>
+<form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit()" [mustMatch]="['password', 'confirmPassword']"
+    novalidate>
+    <div mat-dialog-content fxLayout="column">
+        <mat-form-field>
+            <input matInput placeholder="User Name" [(ngModel)]="user.userName" name="userName" #userName="ngModel"
+                required usernameUnique pattern="^[a-zA-Z]*$">
+            <mat-error
+                *ngIf="(f.submitted || userName.touched || userName.dirty)  && userName.invalid && userName.errors.required">
+                User Name is required
+            </mat-error>
+            <mat-error *ngIf="(f.submitted || userName.touched || userName.dirty) && userName.errors?.pattern">User Name
+                is invalid.
+            </mat-error>
+            <mat-error *ngIf="(f.submitted || userName.touched || userName.dirty) && userName.errors?.uniqueUser">User
+                Name already exit.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="First Name" [(ngModel)]="user.firstName" name="firstName"
+                #firstName="ngModel" required pattern="^[a-zA-Z]*$">
+            <mat-error
+                *ngIf="(f.submitted || firstName.touched || firstName.dirty) && firstName.invalid && firstName.errors.required">
+                First Name is required
+            </mat-error>
+            <mat-error *ngIf="(f.submitted || firstName.touched || firstName.dirty) && firstName.errors?.pattern">First
+                Name is invalid.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="text" placeholder="Last Name" [(ngModel)]="user.lastName" name="lastName"
+                #lastName="ngModel" required pattern="^[a-zA-Z]*$">
+            <mat-error
+                *ngIf="(f.submitted || lastName.touched || lastName.dirty) && lastName.invalid && lastName.errors.required">
+                Last Name is required
+            </mat-error>
+            <mat-error *ngIf="(f.submitted || lastName.touched || lastName.dirty) && lastName.errors?.pattern">Last Name
+                is invalid.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Display Name" [(ngModel)]="user.displayName" name="displayName"
+                #displayName="ngModel" required pattern="[^-\s][a-zA-Z_\s-]+$">
+            <mat-error
+                *ngIf="(f.submitted || displayName.touched || displayName.dirty)  && displayName.invalid && displayName.errors.required">
+                Display Name is required
+            </mat-error>
+            <mat-error *ngIf="(f.submitted || displayName.touched || displayName.dirty) && displayName.errors?.pattern">
+                Display Name is invalid.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput type="email" placeholder="Email" [(ngModel)]="user.email" name="email" #email="ngModel"
+                required emailUnique pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$">
+            <mat-error *ngIf="(f.submitted || email.touched || email.dirty)  && email.errors?.required">Email is
+                required</mat-error>
+            <mat-error *ngIf="(f.submitted || email.touched || email.dirty) && email.errors?.pattern">Email must be a
+                valid email address
+            </mat-error>
+            <mat-error *ngIf="(f.submitted || email.touched || email.dirty) && email.errors?.uniqueUser">Email already
+                exit.
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="password" matInput placeholder="Password" [(ngModel)]="user.password" name="password"
+                #password="ngModel" required minlength="6">
+            <mat-error
+                *ngIf="(f.submitted || password.touched || password.dirty) && password.invalid && password.errors.required">
+                Password is required
+            </mat-error>
+            <mat-error
+                *ngIf="(f.submitted || password.touched || password.dirty)  && password.invalid && password.errors.minlength">
+                Password must be at least 6
+                characters</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input type="password" matInput placeholder="Confirm Password" name="confirmPassword"
+                [(ngModel)]="user.confirmPassword" #confirmPassword="ngModel" required minlength="6">
+            <mat-error
+                *ngIf="(f.submitted || confirmPassword.touched || confirmPassword.dirty)  && confirmPassword.invalid && confirmPassword.errors.required">
+                Confirm
+                Password is required</mat-error>
+            <mat-error
+                *ngIf="(f.submitted || confirmPassword.touched || confirmPassword.dirty) && confirmPassword.invalid && confirmPassword.errors.mustMatch">
+                Passwords must
+                match</mat-error>
+            <mat-error
+                *ngIf="(f.submitted || confirmPassword.touched || confirmPassword.dirty)  && confirmPassword.invalid && confirmPassword.errors.minlength">
+                Confirm Password must be at least 6
+                characters</mat-error>
+        </mat-form-field>
+        <div class="m10">
+            <mat-slide-toggle [(ngModel)]="user.isActive" name="status" #status="ngModel">Active</mat-slide-toggle>
+        </div>
+        <file-input [document]="user" [fileType]="'image'" class="element" FileNameField="DocId"
+            OriginalFileNameField="originalProfilePicFileName" MimeTypeField="profilePicMimeType"
+            (fileUploaded)="isFileUploaded($event)"></file-input>
+        <div class="m10">
+            <mat-checkbox [(ngModel)]="user.hasAddress" name="addressfield" #addressfield="ngModel">Fill in Address
+                Details</mat-checkbox>
+        </div>
+        <div *ngIf="user.hasAddress" fxLayout="column">
+            <mat-form-field>
+                <input matInput placeholder="Address Line 1" [(ngModel)]="user.addressline1" name="addressline1"
+                    #addressline1="ngModel" required pattern="^[^-\s][a-zA-Z0-9\D_\s-]+$" maxlength="100">
+                <mat-error
+                    *ngIf="(f.submitted || addressline1.touched || addressline1.dirty) && addressline1.invalid && addressline1.errors.required">
+                    Address Line 1 is
+                    required
+                </mat-error>
+                <mat-error
+                    *ngIf="(f.submitted || addressline1.touched || addressline1.dirty) && addressline1.errors?.pattern">
+                    Address Line 1 is invalid.
+                </mat-error>
+
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Address Line 2" [(ngModel)]="user.addressline2" name="addressline2"
+                    #addressline2="ngModel" pattern="^[^-\s][a-zA-Z0-9\D_\s-]+$" maxlength="50">
+                <mat-error
+                    *ngIf="(f.submitted || addressline2.touched || addressline2.dirty) && addressline2.errors?.pattern">
+                    Address Line 2 invalid.
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Country" [(ngModel)]="user.country" name="country"
+                    #country="ngModel" required pattern="[^-\s][a-zA-Z_\s-]+$" maxlength="50">
+                <mat-error
+                    *ngIf="(f.submitted || country.touched || country.dirty) && country.invalid && country.errors.required">
+                    Country is
+                    required
+                </mat-error>
+                <mat-error *ngIf="(f.submitted || country.touched || country.dirty) && country.errors?.pattern">Country
+                    is invalid.
+                </mat-error>
+
+
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="State" [(ngModel)]="user.state" required name="state"
+                    #state="ngModel" required pattern="[^-\s][a-zA-Z_\s-]+$" maxlength="50">
+                <mat-error
+                    *ngIf="(f.submitted || state.touched || state.dirty) && state.invalid && state.errors.required">
+                    State is
+                    required
+                </mat-error>
+                <mat-error *ngIf="(f.submitted || state.touched || state.dirty) && state.errors?.pattern">State is
+                    invalid.
+                </mat-error>
+
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="City" [(ngModel)]="user.city" required name="city"
+                    #city="ngModel" required pattern="[^-\s][a-zA-Z_\s-]+$" maxlength="50">
+                <mat-error *ngIf="(f.submitted || city.touched || city.dirty) && city.invalid && city.errors.required">
+                    City is
+                    required
+                </mat-error>
+                <mat-error *ngIf="(f.submitted || city.touched || city.dirty) && city.errors?.pattern">City is invalid.
+                </mat-error>
+
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="text" placeholder="Zip Code" [(ngModel)]="user.pincode" required name="pincode"
+                    #pincode="ngModel" required minlength="5" maxlength="6" (keypress)="numberOnly($event)">
+                <mat-error
+                    *ngIf="(f.submitted || pincode.touched || pincode.dirty)  && pincode.invalid && pincode.errors.required">
+                    Zipcode is
+                    required
+                </mat-error>
+                <mat-error *ngIf="(f.submitted || pincode.touched || pincode.dirty)  && pincode.errors?.minlength">
+                    Zipcode
+                    length is invalid.
+                </mat-error>
+                <mat-error *ngIf="(f.submitted || pincode.touched || pincode.dirty)  && pincode.errors?.pattern">Zipcode
+                    is invalid.
+                </mat-error>
+            </mat-form-field>
+
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button color="warn" type="button" (click)="cancelEdit()">Cancel</button>
+        <button mat-button color="primary" type="submit">Save</button>
+    </div>
+</form>

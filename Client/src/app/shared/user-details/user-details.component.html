@@ -1,0 +1,59 @@
+<mat-card fxFlex>
+    <mat-card-header fxLayout="row" class="color-primary">
+        <div flex>
+            <ng-container *ngIf="selectedUser.DocId">
+                <img [src]="userImage" style="max-width: 130px" alt="Profile Pic">
+            </ng-container>
+        </div>
+
+        <div fxLayout="row">
+            <div>
+                <mat-card-title>Name </mat-card-title>
+                <mat-card-title style="margin-top:0px">User Name</mat-card-title>
+                <mat-card-title>Email </mat-card-title>
+            </div>
+            <div>
+                <mat-card-title>{{selectedUser.firstName +" "+ selectedUser.lastName}}</mat-card-title>
+                <mat-card-title style="margin-top:0px">{{selectedUser.userName}}</mat-card-title>
+                <mat-card-title>{{selectedUser.email}}</mat-card-title>
+            </div>
+        </div>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+        <div *ngIf="selectedUser.hasAddress">
+            <h4>Address</h4>
+            <p>{{selectedUser.addressline1}} <br />
+                <span *ngIf="selectedUser.addressline2"> {{selectedUser.addressline2}} <br /></span>
+                {{selectedUser.state}} <br />
+                {{selectedUser.city}} <br />
+                {{selectedUser.country}} <br />
+                {{selectedUser.pincode}} <br />
+            </p>
+        </div>
+
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <div fxLayout="column">
+            <h4>Roles</h4>
+            <ng-container *ngIf="userRoles.length > 0;else noRole;">
+                <mat-chip-list>
+                    <mat-chip *ngFor="let role of userRoles">{{role}}</mat-chip>
+                </mat-chip-list>
+            </ng-container>
+            <ng-template #noRole>
+                <h5 style="margin-top: 4px;color: #F44336;">User role not yet set.Click 'Add Roles' to add. </h5>
+            </ng-template>
+        </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+
+    <mat-card-actions dir="rtl" fxLayoutGap="15px">
+        <button mat-flat-button color="primary" (click)="onEdit()">Edit</button>
+        <button mat-flat-button color="primary" (click)="addRoles()">{{userRoles.length === 0 ? 'Add' : 'Add/Edit'}}
+            Roles</button>
+        <button mat-flat-button color="warn" (click)="onDelete()">Delete</button>
+    </mat-card-actions>
+</mat-card>
