@@ -1,0 +1,32 @@
+<mat-toolbar color="accent" class="pageHeader">
+  <h2 fxFlex> Documents</h2>
+  <button matTooltip="Add Document" [matTooltipPosition]="'below'" matTooltipClass="tooltip-clr" mat-mini-fab
+    (click)="addDocument()" color="primary">
+    <mat-icon mat-list-icon>note_add</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+<div fxLayout="row" fxLayout.xs="column" fxFlexFill>
+  <ng-container *ngIf="listView">
+    <mat-card-content fxLayout="column" fxFlex.gt-sm="20" fxFlex [fxHide.lt-md]="detailedView && mobileQuery.matches">
+      <app-document-list fxLayout="column" fxFlexFill (onSelectDocument)="onSelect($event)"></app-document-list>
+    </mat-card-content>
+  </ng-container>
+
+  <div fxLayout="column" fxFlex.gt-sm="80" fxFlex fxHide.lt-md [fxShow.lt-md]="detailedView && mobileQuery.matches">
+
+    <mat-card-content fxFlex>
+
+      <div fxLayout="row" fxLayoutAlign="end center" *ngIf="mobileQuery.matches">
+        <button mat-flat-button (click)="backToListView()">
+          <mat-icon>arrow_back</mat-icon>back to list
+        </button>
+      </div>
+      <app-document-details *ngIf="selectedDocument" [(selectedDocument)]="selectedDocument"
+        (onEditDocument)="onEdit($event)" (onDeleteDocument)="onDelete($event)" fxLayout="column" fxFlexFill>
+      </app-document-details>
+      <app-noitem *ngIf="!selectedDocument" [noItem]="noItem" fxFlexFill></app-noitem>
+    </mat-card-content>
+  </div>
+</div>

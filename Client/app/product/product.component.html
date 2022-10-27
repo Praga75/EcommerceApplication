@@ -1,0 +1,232 @@
+﻿<div id="item1" fxLayout="column" fxFlex="100" style="min-height:30px">
+  <h1 id="item10">WELL COME</h1>
+  <mat-tab-group id="item82">
+    <mat-tab id="item83" label="Tab Item">
+      <div id="item84" fxLayout="column" style="min-height:30px">
+        <form id="item41" #item41="ngForm">
+          <div
+            id="item38"
+            style="min-height:30px"
+            fxLayout="row"
+            fxFlexFill
+            fxLayout.xs="column"
+          >
+            <div id="item39" fxFlex="30" fxFlex.xs="50" class=" pa-1">
+              <div id="item42" fxLayout="column">
+                <h1 id="item43">Product Details</h1>
+              </div>
+              <div id="item13" fxLayout="column" style="min-height:30px">
+                <form id="item44" #item44="ngForm">
+                  <mat-form-field id="item45">
+                    <input
+                      id="item46"
+                      name="brand"
+                      matInput
+                      placeholder=" Brand"
+                      [(ngModel)]="product.brand"
+                    />
+                  </mat-form-field>
+                  <mat-form-field id="item47">
+                    <input
+                      id="item48"
+                      name="category"
+                      matInput
+                      placeholder=" Category"
+                      [(ngModel)]="product.category"
+                    />
+                  </mat-form-field>
+                  <mat-form-field id="item49">
+                    <input
+                      id="item50"
+                      name="price"
+                      matInput
+                      placeholder=" Price"
+                      [(ngModel)]="product.price"
+                    />
+                  </mat-form-field>
+                  <mat-form-field id="item51">
+                    <input
+                      id="item52"
+                      name="productquantity"
+                      matInput
+                      placeholder=" Productquantity"
+                      [(ngModel)]="product.productquantity"
+                    />
+                  </mat-form-field>
+                  <h3 id="item81">Upload image</h3>
+                </form>
+                <file-input
+                  id="item79"
+                  [document]="document"
+                  FileNameField="FileName"
+                  OriginalFileNameField="OriginalFileName"
+                  MimeTypeField="MimeType"
+                  DocId="DocId"
+                  isDewDoc="false"
+                ></file-input>
+              </div>
+            </div>
+            <div id="item40" fxFlex="70" fxFlex.xs="50" class=" pa-1">
+              <form id="item9" #item9="ngForm">
+                <h1 id="item67">Product Specification</h1>
+                <div id="item53" fxLayout="column" style="min-height:30px">
+                  <mat-form-field id="item54">
+                    <input
+                      id="item55"
+                      name="description"
+                      matInput
+                      placeholder=" Description"
+                      [(ngModel)]="specification.description"
+                    />
+                  </mat-form-field>
+                  <mat-form-field id="item56">
+                    <input
+                      id="item57"
+                      name="productName"
+                      matInput
+                      placeholder=" Product Name"
+                      [(ngModel)]="specification.productName"
+                    />
+                  </mat-form-field>
+                  <mat-form-field id="item58">
+                    <input
+                      id="item59"
+                      name="size"
+                      matInput
+                      placeholder=" Size"
+                      [(ngModel)]="specification.size"
+                    />
+                  </mat-form-field>
+                  <mat-form-field id="item60">
+                    <input
+                      id="item61"
+                      name="colour"
+                      matInput
+                      placeholder=" Colour"
+                      [(ngModel)]="specification.colour"
+                    />
+                  </mat-form-field>
+                  <mat-form-field id="item62">
+                    <input
+                      id="item63"
+                      name="returnPolicy"
+                      matInput
+                      placeholder=" Return Policy"
+                      [(ngModel)]="specification.returnPolicy"
+                    />
+                  </mat-form-field>
+                  <mat-form-field id="item64">
+                    <input
+                      id="item65"
+                      name="termsAndCondition"
+                      matInput
+                      placeholder=" Terms And Condition"
+                      [(ngModel)]="specification.termsAndCondition"
+                    />
+                  </mat-form-field>
+                  <button
+                    id="item66"
+                    mat-button="true"
+                    mat-raised-button="true"
+                    color="primary"
+                    type="submit"
+                    (click)="insert()"
+                  >
+                    Add Product
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </form>
+      </div>
+    </mat-tab>
+    <mat-tab id="item85" label="Tab Item">
+      <div id="item86" fxLayout="column" style="min-height:30px">
+        <h1 id="item92">YOUR PRODUCTS</h1>
+        <div
+          id="item87"
+          style="min-height:30px"
+          fxLayout="row"
+          fxFlexFill
+          fxLayout.xs="column"
+        >
+          <div
+            id="item88"
+            fxFlex="30"
+            fxFlex.xs="50"
+            *ngFor="
+              let sellerProductlistResponseListItem of sellerProductlistResponseList;
+              let i = index
+            "
+            (click)="
+              sellerProductlistResponseListSelectedItem = sellerProductlistResponseListItem
+            "
+            class=" pa-1"
+          >
+            <mat-card id="item90"></mat-card>
+          </div>
+          <div id="item89" fxFlex="70" fxFlex.xs="50" class=" pa-1">
+            <div
+              id="item93"
+              fxLayout="row"
+              fxLayoutGap="10px"
+              style="min-height:30px"
+            >
+              <div id="item108" fxLayout="column">
+                <mat-card id="item91">
+                  <div
+                    id="item94"
+                    style="min-height:30px"
+                    fxFlex.gt-sm="25"
+                    fxFlex.gt-xs="50"
+                    fxFlex="100"
+                  >
+                    <mat-card id="item95" class=" pricing-plan">
+                      <mat-card-title id="item96">
+                        {{ sellerProductlistResponseListItem.brand }}
+                      </mat-card-title>
+                      <mat-card-subtitle id="item97" class=" mat-text-primary">
+                        {{ sellerProductlistResponseListItem.price }}
+                      </mat-card-subtitle>
+                      <mat-card-content id="item98">
+                        <h1 id="item99" class=" plan-price">
+                          FREE
+                          <strong id="item100" class=" plan-price">
+                            <span id="item101" class=" plan-price-symbol">
+                              {{
+                                sellerProductlistResponseListItem.productName
+                              }}
+                            </span>
+                            <span id="item102">
+                              {{ sellerProductlistResponseListItem.totalsale }}
+                            </span>
+                            <span id="item103" class=" plan-price-period">
+                              {{
+                                sellerProductlistResponseListItem.description
+                              }}
+                            </span>
+                          </strong>
+                        </h1>
+                        <mat-list id="item104" dense>
+                          <mat-list-item id="item105">
+                            Secure storage
+                          </mat-list-item>
+                        </mat-list>
+                      </mat-card-content>
+                      <mat-card-actions id="item106" class=" pb-1">
+                        <button id="item107" color="accent" mat-raised-button>
+                          Choose Plan
+                        </button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </div>
+                </mat-card>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

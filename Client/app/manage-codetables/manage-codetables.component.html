@@ -1,0 +1,31 @@
+<mat-toolbar color="accent" class="pageHeader">
+  <h2 fxFlex>Manage Code Tables</h2>
+
+</mat-toolbar>
+
+
+
+<div fxLayout="row" fxLayout.xs="column" fxFlexFill>
+  <ng-container *ngIf="listView">
+    <mat-card-content fxLayout="column" fxFlex.gt-sm="20" fxFlex [fxHide.lt-md]="detailedView && mobileQuery.matches">
+      <app-codetables-list fxLayout="column" fxFlexFill (onSelectCodeTableHeader)="onSelect($event)">
+      </app-codetables-list>
+    </mat-card-content>
+  </ng-container>
+
+  <div fxLayout="column" fxFlex.gt-sm="80" fxFlex fxHide.lt-md [fxShow.lt-md]="detailedView && mobileQuery.matches">
+
+    <mat-card-content fxFlex>
+
+      <div fxLayout="row" fxLayoutAlign="end center" *ngIf="mobileQuery.matches">
+        <button mat-flat-button (click)="backToListView()">
+          <mat-icon>arrow_back</mat-icon>back to list
+        </button>
+      </div>
+      <app-codetables-details *ngIf="selectedCodeTableHeader" [selectedCodeTableHeader]="selectedCodeTableHeader"
+        (onEditCodeTableHeader)="onEdit($event)" (onDeleteCodeTableHeader)="onDelete($event)" fxLayout="column"
+        fxFlexFill></app-codetables-details>
+      <app-noitem *ngIf="!selectedCodeTableHeader" [noItem]="noItem" fxFlexFill></app-noitem>
+    </mat-card-content>
+  </div>
+</div>

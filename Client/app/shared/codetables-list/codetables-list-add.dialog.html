@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Add Code Table Header</h1>
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <div mat-dialog-content fxLayout="column">
+        <mat-form-field>
+            <input matInput placeholder="Code Name" name="CodeName" #CodeName="ngModel" maxlength="32"
+                pattern="^[^-\s][a-zA-Z0-9_\s-]+$" required [(ngModel)]="codeTableHeader.CodeName">
+            <mat-error *ngIf="f.submitted && CodeName.invalid && CodeName.errors.required">Code Name is required
+            </mat-error>
+            <mat-error *ngIf="f.submitted && CodeName.invalid && CodeName.errors.pattern">Code Name is invalid
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Description" name="CodeNameDescription" #CodeNameDescription="ngModel"
+                maxlength="100" pattern="^[^-\s][a-zA-Z0-9_\s-]+$" [(ngModel)]="codeTableHeader.CodeNameDescription"
+                required>
+            <mat-error *ngIf="f.submitted && CodeNameDescription.invalid && CodeNameDescription.errors.required">Code
+                Name Description is required
+            </mat-error>
+            <mat-error *ngIf="f.submitted && CodeNameDescription.invalid && CodeNameDescription.errors.pattern">Code
+                Name Description is invalid
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-flat-button color="warn" type="button" (click)="cancelPopup()">Cancel</button>
+        <button mat-flat-button color="primary" type="submit">Save</button>
+    </div>
+</form>

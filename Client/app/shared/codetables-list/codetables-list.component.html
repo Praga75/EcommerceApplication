@@ -1,0 +1,23 @@
+<div fxFlex fxLayout="column">
+    <mat-toolbar>
+        <h2 fxFlex>CodeTable Header</h2>
+        <button matTooltip="Add Code table Header" [matTooltipPosition]="'below'" matTooltipClass="tooltip-clr"
+            mat-mini-fab (click)="addCodeTableHeader()" color="primary">
+            <mat-icon mat-list-icon>note_add</mat-icon>
+        </button>
+    </mat-toolbar>
+    <mat-list *ngIf="CodeTableHeaderList && CodeTableHeaderList.length > 0">
+        <mat-list-item *ngFor="let codeTableHeader of CodeTableHeaderList"
+            [class.selected]="codeTableHeader === selectedOperation" (click)="emitSelectedOperation(codeTableHeader)">
+            <h4 mat-line>{{codeTableHeader.CodeName}}</h4>
+            <h4 mat-line>{{codeTableHeader.CodeNameDescription}}</h4>
+            <span class="deleteIcon">
+                <mat-icon (click)="deleteCodeTable(codeTableHeader, $event)">delete</mat-icon>
+            </span>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+    <dew-mat-pager fxFlex="10" [(filter)]="CodeTableHeaderListFilters" (onPageChange)="pageChange()"
+        [totalItem]="CodeTableHeaderListTotal"></dew-mat-pager>
+
+</div>

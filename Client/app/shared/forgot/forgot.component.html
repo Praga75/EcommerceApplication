@@ -1,0 +1,23 @@
+<div class="session mat-indigo login-screen">
+  <div class="session-content">
+    <div class="session-wrapper text-xs-center">
+      <img *ngIf="projectLogo.length > 0" src="{{projectLogo}}" style="max-width:200px" alt="logo" />
+      <mat-card>
+        <form [formGroup]="forgotPasswordForm" (ngSubmit)="sentResetPasswordLink()">
+          <mat-card-content fxFlex fxLayout="column" fxLayoutGap="20px">
+            <mat-form-field fxFlex>
+              <input matInput type="email" formControlName="email" placeholder="Registered Email" name="email" required
+                pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" />
+              <mat-error *ngIf="isFieldInvalid('email')">Email is required & Valid</mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit" [disabled]="f.email.errors">Get Reset Password in
+              Email</button>
+            <button mat-raised-button (click)="backToLogin()">
+              <mat-icon>arrow_back</mat-icon>&nbsp;Back to login
+            </button>
+          </mat-card-content>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>

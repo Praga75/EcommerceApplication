@@ -1,0 +1,11 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <mat-icon style="color: #2196F3;
+  font-size: 50px;
+  position: relative;
+  left: -3px;">info</mat-icon><br />
+  <p>{{data.message}}</p>
+</div>
+<mat-divider></mat-divider>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="center center">
+  <button mat-flat-button color="primary" (click)="ok()">Ok</button>
+</div>

@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>Edit Code Table</h1>
+<form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+    <div mat-dialog-content fxLayout="column">
+        <mat-form-field>
+            <input matInput placeholder="Code Name" [(ngModel)]="codeTable.CodeName" name="CodeName" #CodeName="ngModel"
+                disabled>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Code Display Value" [(ngModel)]="codeTable.CodeDisplayValue"
+                name="CodeDisplayValue" maxlength="32" #CodeDisplayValue="ngModel" pattern="^[^-\s][a-zA-Z0-9_\s-]+$"
+                required>
+            <mat-error *ngIf="f.submitted && CodeDisplayValue.invalid && CodeDisplayValue.errors.required">Code Display
+                Value is required
+            </mat-error>
+            <mat-error *ngIf="f.submitted && CodeDisplayValue.invalid && CodeDisplayValue.errors.pattern">Code Display
+                Value is invalid
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Code Value" [(ngModel)]="codeTable.CodeValue" name="CodeValue"
+                #CodeValue="ngModel" maxlength="100" pattern="^[^-\s][a-zA-Z0-9_\s-]+$" required>
+            <mat-error *ngIf="f.submitted && CodeValue.invalid && CodeValue.errors.required">Code Value is required
+            </mat-error>
+            <mat-error *ngIf="f.submitted && CodeValue.invalid && CodeValue.errors.pattern">Code Value is invalid
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Code Value Description" [(ngModel)]="codeTable.CodeValueDescription"
+                name="CodeValueDescription" maxlength="100" #CodeValueDescription="ngModel"
+                pattern="^[^-\s][a-zA-Z0-9_\s-]+$" required>
+            <mat-error *ngIf="f.submitted && CodeValueDescription.invalid && CodeValueDescription.errors.required">Code
+                Value Description is required
+            </mat-error>
+            <mat-error *ngIf="f.submitted && CodeValueDescription.invalid && CodeValueDescription.errors.pattern">Code
+                Value Description is invalid
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Code Sequence" [(ngModel)]="codeTable.CodeSequence" name="CodeSequence"
+                maxlength="10" #CodeSequence="ngModel" pattern="^\d*$" required>
+            <mat-error *ngIf="f.submitted && CodeSequence.invalid && CodeSequence.errors.required">Code Sequence is
+                required
+            </mat-error>
+            <mat-error *ngIf="f.submitted && CodeSequence.invalid && CodeSequence.errors.pattern">Code Sequence is invalid
+            </mat-error>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button color="warn" type="button" (click)="cancelPopup()">Cancel</button>
+        <button mat-button color="primary" type="submit">Save</button>
+    </div>
+</form>

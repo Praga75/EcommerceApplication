@@ -1,0 +1,21 @@
+<div fxFlex fxLayout="column">
+    <mat-form-field appearance="fill">
+        <mat-label>Select Doc Type</mat-label>
+        <mat-select [disabled]="iscreate" [(value)]="statusFilter" (selectionChange)="getfilteremiter(statusFilter)">
+            <mat-option value="1">Document Section</mat-option>
+            <mat-option value="0">Other Documents</mat-option>
+            <mat-option value="null">All Documents</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-list *ngIf="documentList && documentList.length > 0">
+        <mat-list-item *ngFor="let document of documentList" [class.selected]="document === selectedUser"
+            (click)="emitSelectedUser(document)">
+            <div mat-list-icon class="ui-avatar color-primary">{{document.Name | slice:0:1 | uppercase}}</div>
+            <h4 mat-line> {{document.Name}} </h4>
+            <p mat-line> {{document.Description}}</p>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+    </mat-list>
+    <dew-mat-pager fxFlex="10" [(filter)]="documentListFilters" (onPageChange)="pageChange()"
+        [totalItem]="documentListTotal"></dew-mat-pager>
+</div>

@@ -1,0 +1,98 @@
+﻿<div id="item1" fxLayout="column" fxFlex="100" style="min-height:30px">
+  <div id="item2" fxLayout="column" style="min-height:30px"></div>
+  <form id="item138" #item138="ngForm">
+    <div id="item84" fxLayout="column">
+      <div
+        id="item3"
+        style="min-height:30px"
+        fxLayout="row"
+        fxFlexFill
+        fxLayout.xs="column"
+      >
+        <div
+          id="item4"
+          fxFlex="30"
+          fxFlex.xs="50"
+          *ngFor="
+            let databyidResponseListItem of databyidResponseList;
+            let i = index
+          "
+          (click)="databyidResponseListSelectedItem = databyidResponseListItem"
+          class=" pa-1"
+        >
+          <mat-card id="item6">
+            <img
+              id="item83"
+              [src]="databyidResponseListItem.image"
+              style="width:900px"
+            />
+          </mat-card>
+        </div>
+        <div id="item5" fxFlex="70" fxFlex.xs="50" class=" pa-1">
+          <div id="item99" fxLayout="column">
+            <h1 id="item104">{{ databyidResponseListItem.brand }}</h1>
+            <h3 id="item119">{{ databyidResponseListItem.productName }}</h3>
+            <span id="item101">{{ databyidResponseListItem.totalsale }}</span>
+            <span id="item102">{{ databyidResponseListItem.size }}</span>
+            <span id="item103">{{ databyidResponseListItem.colour }}</span>
+            <textarea id="item105"
+              >{{ databyidResponseListItem.termsAndCondition }}
+								</textarea
+            >
+          </div>
+          <button
+            id="item136"
+            mat-button="true"
+            mat-raised-button="true"
+            color="primary"
+            type="button"
+          >
+            Add To Card
+          </button>
+          <button
+            id="item137"
+            mat-button="true"
+            mat-raised-button="true"
+            color="primary"
+            type="button"
+          >
+            Buy Now
+          </button>
+        </div>
+      </div>
+      <mat-tab-group id="item111">
+        <mat-tab id="item112" label="Tab Item">
+          <div id="item113" fxLayout="column" style="min-height:30px">
+            <span id="item120">
+              <span id="item122">{{ databyidResponseListItem.brand }}</span>
+              <hr id="item125" />
+            </span>
+            <span id="item123">{{ databyidResponseListItem.category }}</span>
+            <span id="item121">
+              <hr id="item126" />
+              <span id="item129">{{ databyidResponseListItem.colour }}</span>
+            </span>
+            <span id="item124">
+              <hr id="item128" />
+            </span>
+            <span id="item130">{{ databyidResponseListItem.size }}</span>
+            <hr id="item132" />
+            <span id="item131">
+              {{ databyidResponseListItem.returnPolicy }}
+            </span>
+            <hr id="item133" />
+            <span id="item134">{{ databyidResponseListItem.description }}</span>
+            <hr id="item135" />
+          </div>
+        </mat-tab>
+        <mat-tab id="item114" label="Tab Item">
+          <div id="item115" fxLayout="column" style="min-height:30px"></div>
+        </mat-tab>
+        <mat-tab id="item116" label="Tab Item">
+          <div id="item117" fxLayout="column" style="min-height:30px"></div>
+        </mat-tab>
+        <hr id="item127" />
+      </mat-tab-group>
+    </div>
+  </form>
+</div>

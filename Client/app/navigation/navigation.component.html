@@ -1,0 +1,285 @@
+﻿﻿<ng-container *ngIf="project.navigationType == 'horizontal-navigation' && mobileQuery.matches == false">
+
+
+
+
+
+
+
+    <button mat-button [routerLink]="['/home']">
+        Home
+    </button>
+
+
+
+
+
+
+
+
+    <button mat-button [routerLink]="['/sellersignup']">
+        sellersignup
+    </button>
+
+
+
+
+
+
+
+
+
+
+    <button mat-button [routerLink]="['/addproduct']">
+        product
+    </button>
+
+
+
+
+
+
+
+
+    <button mat-button [routerLink]="['/mee']">
+        mee
+    </button>
+
+
+
+
+
+
+
+
+    <button mat-button [routerLink]="['/product']">
+        products
+    </button>
+
+
+
+
+
+
+
+
+    <button mat-button [routerLink]="['/customer']">
+        customer
+    </button>
+
+
+
+
+
+
+
+
+    <button mat-button [routerLink]="['/customerloginpage']">
+        customerloginpage
+    </button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <button mat-button [routerLink]="['/sellerorderlist']">
+        sellerorderlist
+    </button>
+
+
+
+
+
+    <button mat-button [matMenuTriggerFor]="admin">Admin</button>
+    <mat-menu #admin="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="user">User</button>
+        <button mat-menu-item [routerLink]="['/manageCodetables']">Code Table</button>
+        <button mat-menu-item [routerLink]="['/manageDocuments']">Documents</button>
+    </mat-menu>
+    <mat-menu #user="matMenu">
+        <button mat-menu-item [routerLink]="['/manageUsers']">Manage Users</button>
+        <button mat-menu-item [routerLink]="['/manageRoles']">Manage Roles</button>
+        <button mat-menu-item [routerLink]="['/manageEntities']">Manage Entities</button>
+        <button mat-menu-item [routerLink]="['/manageOperation']">Manage Operation</button>
+    </mat-menu>
+    <button mat-button [matMenuTriggerFor]="userProfile" *ngIf="authService.currentUser && authService.currentUser.userName">
+        <mat-icon mat-list-icon>account_circle</mat-icon>&nbsp;{{authService.currentUser.userName }}
+    </button>
+    <mat-menu #userProfile="matMenu">
+        <button mat-menu-item [routerLink]="['/profile']">Profile</button>
+        <button mat-menu-item (click)="onLogout()">Logout</button>
+    </mat-menu>
+</ng-container>
+
+<ng-container *ngIf="project.navigationType == 'vertical-navigation' || mobileQuery.matches == true">
+    <div id="vertical-nav">
+        <mat-list>
+
+
+
+
+
+
+
+
+            <mat-list-item class="standalone-menu" [routerLink]="['/home']" (click)="sideNavTrigger($event)">
+                Home
+            </mat-list-item>
+
+
+
+
+
+
+
+
+
+
+
+            <mat-list-item class="standalone-menu" [routerLink]="['/sellersignup']" (click)="sideNavTrigger($event)">
+                sellersignup
+            </mat-list-item>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <mat-list-item class="standalone-menu" [routerLink]="['/addproduct']" (click)="sideNavTrigger($event)">
+                product
+            </mat-list-item>
+
+
+
+
+
+
+
+
+
+
+
+            <mat-list-item class="standalone-menu" [routerLink]="['/mee']" (click)="sideNavTrigger($event)">
+                mee
+            </mat-list-item>
+
+
+
+
+
+
+
+
+
+
+
+            <mat-list-item class="standalone-menu" [routerLink]="['/product']" (click)="sideNavTrigger($event)">
+                products
+            </mat-list-item>
+
+
+
+
+
+
+
+
+
+
+
+            <mat-list-item class="standalone-menu" [routerLink]="['/customer']" (click)="sideNavTrigger($event)">
+                customer
+            </mat-list-item>
+
+
+
+
+
+
+
+
+
+
+
+            <mat-list-item class="standalone-menu" [routerLink]="['/customerloginpage']" (click)="sideNavTrigger($event)">
+                customerloginpage
+            </mat-list-item>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <mat-list-item class="standalone-menu" [routerLink]="['/sellerorderlist']" (click)="sideNavTrigger($event)">
+                sellerorderlist
+            </mat-list-item>
+
+
+
+
+
+        </mat-list>
+        <mat-accordion>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Admin
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item [routerLink]="['/manageUsers']" (click)="sideNavTrigger($event)">Manage Users
+                    </mat-list-item>
+                    <mat-list-item [routerLink]="['/manageRoles']" (click)="sideNavTrigger($event)">Manage Roles
+                    </mat-list-item>
+                    <mat-list-item [routerLink]="['/manageEntities']" (click)="sideNavTrigger($event)">Manage Entities
+                    </mat-list-item>
+
+                    <mat-list-item [routerLink]=" ['/manageOperation']" (click)="sideNavTrigger($event)">Manage Operation
+                    </mat-list-item>
+                    <mat-list-item [routerLink]="['/manageUsers']" (click)="sideNavTrigger($event)">Manage Users
+                    </mat-list-item>
+                    <mat-list-item [routerLink]="['/manageCodetables']" (click)="sideNavTrigger($event)">Code Table
+                    </mat-list-item>
+                    <mat-list-item [routerLink]="['/manageDocuments']" (click)="sideNavTrigger($event)">Documents
+                    </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+            <mat-list>
+                <mat-list-item class="standalone-menu" [routerLink]=" ['/profile']" (click)="sideNavTrigger($event)">Profile
+                </mat-list-item>
+                <mat-list-item class="standalone-menu" (click)="sideNavTrigger($event);onLogout()">Logout</mat-list-item>
+            </mat-list>
+        </mat-accordion>
+    </div>
+</ng-container>

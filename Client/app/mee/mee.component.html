@@ -1,0 +1,97 @@
+﻿<div id="item1" fxLayout="column" fxFlex="100" style="min-height:30px">
+  <div id="item2" fxLayout="column" style="min-height:30px">
+    <div
+      id="item3"
+      style="min-height:30px"
+      fxLayout="row"
+      fxFlexFill
+      fxLayout.xs="column"
+    >
+      <div id="item4" fxFlex="30" fxFlex.xs="50" class=" pa-1">
+        <login id="item45"></login>
+      </div>
+      <div id="item5" fxFlex="70" fxFlex.xs="50" class=" pa-1">
+        <mat-horizontal-stepper id="item6">
+          <mat-step id="item7">
+            <form id="item8" #item8="ngForm">
+              <div id="item9" fxLayout="column">
+                <h1 id="item28">NOT VERIFIED</h1>
+                <mat-accordion
+                  id="item30"
+                  *ngFor="
+                    let notverifyproductResponseListItem of notverifyproductResponseList;
+                    let i = index
+                  "
+                  (click)="
+                    notverifyproductResponseListSelectedItem = notverifyproductResponseListItem
+                  "
+                >
+                  <mat-expansion-panel id="item31">
+                    <mat-expansion-panel-header id="item32">
+                      <mat-panel-title id="item33">
+                        {{ notverifyproductResponseListItem.price }}
+                      </mat-panel-title>
+                      <mat-panel-description id="item34">
+                        {{ notverifyproductResponseListItem.brand }}
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-card-title id="item35">
+                      {{ notverifyproductResponseListItem.category }}
+                    </mat-card-title>
+                    <mat-card-subtitle id="item36">
+                      {{ notverifyproductResponseListItem.isVerified }}
+                    </mat-card-subtitle>
+                    <button
+                      id="item44"
+                      mat-button="true"
+                      mat-raised-button="true"
+                      color="primary"
+                      type="submit"
+                      (click)="updatefun()"
+                    >
+                      Accept
+                    </button>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step id="item11">
+            <form id="item12" #item12="ngForm">
+              <h1 id="item29">VERIFIED</h1>
+              <div id="item13" fxLayout="column">
+                <mat-accordion
+                  id="item37"
+                  *ngFor="
+                    let notverifiedResponseListItem of notverifiedResponseList;
+                    let i = index
+                  "
+                  (click)="
+                    notverifiedResponseListSelectedItem = notverifiedResponseListItem
+                  "
+                >
+                  <mat-expansion-panel id="item38">
+                    <mat-expansion-panel-header id="item39">
+                      <mat-panel-title id="item40">
+                        {{ notverifiedResponseListItem.brand }}
+                      </mat-panel-title>
+                      <mat-panel-description id="item41">
+                        {{ notverifiedResponseListItem.category }}
+                      </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-card-title id="item42">
+                      {{ notverifiedResponseListItem.price }}
+                    </mat-card-title>
+                    <mat-card-subtitle id="item43">
+                      {{ notverifiedResponseListItem.isVerified }}
+                    </mat-card-subtitle>
+                  </mat-expansion-panel>
+                </mat-accordion>
+              </div>
+            </form>
+          </mat-step>
+        </mat-horizontal-stepper>
+      </div>
+    </div>
+  </div>
+</div>

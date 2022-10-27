@@ -1,0 +1,50 @@
+﻿<!-- HORIZONTAL NAVIGATION-->
+<ng-container *ngIf="project.navigationType == 'horizontal-navigation' && mobileQuery.matches == false">
+    <div class="app mat-typography mat-app-background">
+        <ng-http-loader [entryComponent]="matSpinner"></ng-http-loader>
+        <horizontal-navigation *ngIf="authService.currentUser && authService.currentUser.userName">
+        </horizontal-navigation>
+        <div class="app-inner"
+            [ngClass]="{'notAuthorised': !(authService.currentUser && authService.currentUser.userName)}"
+            [perfectScrollbar]="config">
+            <router-outlet></router-outlet>
+            <button mat-fab color="warn" matTooltip="Go to Top" aria-label="Go to Top" class="scrollToTop" (click)="scrollToTop()">
+                <mat-icon>keyboard_arrow_up</mat-icon>
+            </button>
+        </div>
+    </div>
+</ng-container>
+<!-- /HORIZONTAL NAVIGATION-->
+
+
+
+<!-- VERTICAL NAVIGATION-->
+<ng-container id="vertical-nav" *ngIf="project.navigationType == 'vertical-navigation' || mobileQuery.matches == true">
+    <div class="app mat-typography mat-app-background dew-container" [class.dew-is-mobile]="mobileQuery.matches">
+        <ng-http-loader [entryComponent]="matSpinner"></ng-http-loader>
+        <mat-toolbar color="primary" class="dew-toolbar"
+            *ngIf="authService.currentUser && authService.currentUser.userName">
+            <button mat-icon-button (click)="dewsidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <h1 class="dew-app-name">{{project.name}}</h1>
+        </mat-toolbar>
+        <mat-sidenav-container class="dew-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 0 : 0">
+            <mat-sidenav #dewsidenav [mode]="'over'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56"
+                style="width:260px">
+                <vertical-navigation (closeSideNavigation)="closeSideNav($event)"></vertical-navigation>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <div class="app-inner"
+                    [ngClass]="{'notAuthorised': !(authService.currentUser && authService.currentUser.userName)}"
+                    [perfectScrollbar]="config">
+                    <router-outlet></router-outlet>
+                    <button mat-fab color="warn" matTooltip="Go to Top" aria-label="Go to Top" class="scrollToTop" (click)="scrollToTop()">
+                        <mat-icon>keyboard_arrow_up</mat-icon>
+                    </button>
+                </div>
+            </mat-sidenav-content>
+        </mat-sidenav-container>
+    </div>
+</ng-container>
+<!-- /VERTICAL NAVIGATION-->

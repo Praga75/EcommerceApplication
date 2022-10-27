@@ -1,0 +1,17 @@
+@import "default.variables";
+@import "variables";
+@import "scss/mixins/bi-app/bi-app-ltr";
+
+// Core Variables and Mixins
+@import "scss/app.variables";
+@import "scss/mixins";
+
+// Core Styles
+@import "scss/core";
+@import "scss/material";
+@import "scss/utilities/utilities";
+
+//Dew Custom
+@import "scss/dew";
+// @import "../styles_dew.scss"
+
