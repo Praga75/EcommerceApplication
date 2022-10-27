@@ -8,8 +8,12 @@ function KnexDBBackend(db, prefix) {
     this.bucketTable = prefix && prefix.length > 0 ? prefix + 'bucket' : 'acl_bucket';
     this.bucketValuesTable = prefix && prefix.length > 0 ? prefix + 'bucket_values' : 'acl_bucket_values';
 }
+<<<<<<< HEAD
 // something
 
+=======
+// Test line one
+>>>>>>> 0aa2c78499ff8614008e33202ed662fecdcef04d
 KnexDBBackend.prototype = {
     //Begins a transaction.
     begin: function () {
